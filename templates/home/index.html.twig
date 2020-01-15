@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home page {% endblock %}
+
+{% block body %}
+
+    <p>Vous vous trouvez actuellement à la Wild Code School, bien au chaud, au calme, comme à la maison.</p>
+    <p>Ayant retrouver des forces, vous vous sentez prêt à accomplir l'unique but de votre vie : décrocher un stage.</p>
+    <p>Cependant, pour y parvenir une longue route vous attends...  vous devez d'abord passer au chalet où tous vos amis Wilder font la fête.</p>
+    <p>N'étant pas totalement confiant de ce que vous risquez de voir ou d'éprouver, vous faites appel à un super héro qui sera là pour vous soutenir.</p>
+    <p>Vous en aurez bien besoin !</p>
+
+    {% if personnage is not empty %}
+        <p> Le héro {{ personnage.nameApi }}, que j'ai surnommé petit {{ personnage.name }} est actuellement mon compagnon.</p>
+        <a href="{{ path('selection_hero') }}">Modifier mon héro ?</a>
+    {% else %}
+        <a href="{{ path('selection_hero') }}">Choisir mon héro !</a>
+    {% endif %}
+
+{% endblock %}

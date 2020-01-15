@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <img src="{{ user_personnage.image }}">
+    <p>Nom du héro : {{ user_personnage.nameApi }}</p>
+    <p>Pseudo du héro : {{ user_personnage.name }}</p>
+    <p>Nom du joueur : {{ user_personnage.user.username }}</p>
+
+    <p><em>Statistiques :</em></p>
+    <ul>
+        <li>Intelligence : {{ user_personnage.intelligence }} </li>
+        <li>Force : {{ user_personnage.strength }} </li>
+        <li>Vitesse : {{ user_personnage.speed }} </li>
+        <li>Résistance : {{ user_personnage.durability }} </li>
+        <li>Pouvoir : {{ user_personnage.power }} </li>
+        <li>Combat :{{ user_personnage.combat }}  </li>
+    </ul>
+
+    <p><em>Etat du jeu :</em></p>
+    <p>Items découverts : </p>
+    <ul>
+    {% for item in user_items %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+    </ul>
+    <p>Stage : </p>
+    {% if user_personnage.stage == 1 %}
+        <ul><li>Trouvé !</li></ul>
+    {% else %}
+        <ul><li>Pas eu de chance ...</li></ul>
+    {% endif %}
+
+
+
+{% endblock %}

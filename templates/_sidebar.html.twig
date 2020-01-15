@@ -1,0 +1,33 @@
+<div>
+
+    <div class="play-button">
+        {% if personnage is not empty %}
+            <a href="{{ path('start') }}"><h2>START</h2></a>
+        {% else %}
+            <a href="{{ path('selection_hero') }}"><h2>START</h2></a>
+        {% endif %}
+    </div>
+
+    <h3><a href="{{ path('home') }}">{{ user.username }}</a></h3>
+    {% if personnage is not empty %}
+        <a href="{{ path('caracteristique_hero') }}"><h3>Mon personnage : {{ personnage.name }}</h3></a>
+    {% endif %}
+    <div>
+        <h3><a href="{{ path('show_location') }}">Locations</a></h3>
+
+    </div>
+    <div>
+        <h3><a href="{{ path('show_objets') }}">Objets</a></h3>
+
+    </div>
+
+    <div>
+        <h3>Voir les autres joueurs</h3>
+        <ul>
+
+            {% for personnage in personnages %}
+                <li><a href="{{ path('show_personnage', {'id': personnage.id}) }}">{{ personnage.user.username }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<ul>
+
+    {% for item in items %}
+            <li><strong>{{ item.name }}</strong></li>
+            <div class="item2">
+            <img style="width:100px;" src="/images/{{ item.image }}" >
+            {% if item in user_items %}
+                <p>{{ item.description }}</p>
+            {% endif %}
+            </div>
+    {% endfor %}
+</ul>
+
+{% endblock %}

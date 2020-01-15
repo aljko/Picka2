@@ -1,0 +1,36 @@
+{% extends 'gamespace.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+{% block sidebar %}
+    {% include '_sidebar_game.html.twig' %}
+{% endblock %}
+{% block body %}
+    {#    <audio style="display: none" class="game-song" loop="loop" autoplay="autoplay" controls="controls" preload="auto">#}
+    {#        <source src="./pixel-tone.mp3" type="audio/mp3" />#}
+    {#    </audio>#}
+
+    <div class="game-space">
+
+        <canvas width="960" height="540"></canvas>
+
+        <div class="game-box">
+
+            <div id="FinalImage"><img src="/images/ghost.png"></div>
+            <div id="FinalDistrictZone" class="interactiveZone">Whoopsie!</div>
+
+            <div style="display: none" id="CharacterItems" class="character-items">
+                <h2>Items</h2>
+                <hr>
+                {% for item in items %}
+                    <div class="item">
+                        <a href="{{ path('game_item', {'id': item.id}) }}"><img src="/images/{{ item.image }}"></a>
+                        {#                            <img src="/images/{{ item.image }}">#}
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

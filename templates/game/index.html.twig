@@ -1,0 +1,79 @@
+{% extends 'gamespace.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+{% block sidebar %}
+    {% include '_sidebar_game.html.twig' %}
+{% endblock %}
+{% block body %}
+{#    <audio style="display: none" class="game-song" loop="loop" autoplay="autoplay" controls="controls" preload="auto">#}
+{#        <source src="./pixel-tone.mp3" type="audio/mp3" />#}
+{#    </audio>#}
+
+        <div class="game-space">
+
+            <canvas width="960" height="540"></canvas>
+
+            <div class="game-box">
+
+                <div id="ItemsReceived"> <i class="fas fa-exclamation-circle"></i> Vous avez reçu 16 objets! </div>
+
+                <div id="GhostImage"><img src="/images/ghost.png"></div>
+                <div id="GhostDistrictZone" class="interactiveZone">Bienvenue chez Ghost District!</div>
+
+                <div id="PigeonImage"><img src="/images/grumphp.png"></div>
+                <div id="WhitePigeonZone" class="interactiveZone">Bienvenue chez White Pigeon!</div>
+
+                <div id="ChaletImage"><img src="/images/nudiste.png"></div>
+
+                <div id="ChaletZone" class="interactiveZone">
+                    {% if (app.request.cookies.get('accessItem')) == 1 or path(app.request.get('_route')) == "/game" %}
+                    Bon maintenant faut nettoyer tous ces cadavres...
+                    {% else %}
+                    Bienvenue au Chalet!
+                    {% endif %}
+                </div>
+
+                <div style="display:none;" id="FapImage"><img src="/images/yarn.png"></div>
+                <div id="ThinkFapZone" class="interactiveZone">Bienvenue chez Think Fap!</div>
+
+                <div style="display: none" id="CharacterItems" class="character-items">
+                    <h2>Items</h2>
+                    <hr>
+                    {% for item in items %}
+                        <div class="item" onclick="
+                                document.cookie = 'ObjectId={{ item.id }}';
+                                document.cookie = 'ObjectDescription={{ item.description }}';
+                                document.cookie = 'ObjectImage={{ item.image }}';
+                                document.cookie = 'ObjectVictory={{ item.victory }}';
+                                document.cookie = 'useItem=1';
+                                document.getElementById('CharacterItems').style.display = 'none';
+
+                        {% if item.victory == 1 %}
+
+                                document.getElementById('PigeonImage').innerHTML = '<div class=\'FinalResult\'><div><img src=\'https://pbs.twimg.com/media/Dh52vVmXUAAS3uI.png\'></div></div>';
+                                document.getElementById('WhitePigeonZone').innerHTML = '{{ item.description }}' +
+'<a href=\'/game/item/{{ item.id }}\'> Accepter le stage!</a>';
+;
+                        {% endif %}
+
+                        {% if item.victory == 0 %}
+
+                                document.getElementById('PigeonImage').innerHTML = '<div class=\'FinalResult\'><div><img src=\'https://i.pinimg.com/originals/78/2e/14/782e14812ffe7557defc806f458d5773.png\'><div></div>';
+                                document.getElementById('WhitePigeonZone').innerHTML = '{{ item.description }}' +
+'<a href=\'/game/item/{{ item.id }}\'> Partir la tête haute!</a>';
+
+                        {% endif %}
+                                ">
+                            <span><img src="/images/{{ item.image }}">
+                            </span>
+{#                            {{ path('game_item', {'id': item.id}) }}#}
+                            {#                            <img src="/images/{{ item.image }}">#}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+{% endblock %}

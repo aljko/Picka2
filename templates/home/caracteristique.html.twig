@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <img src="{{ personnage.image }}">
+    <p>Nom : {{ personnage.name }}</p>
+    <p>Taille : {{ appearance.height.1 }}</p>
+    <p>Poids : {{ appearance.weight.1 }}</p>
+    <p>Couleur des yeux : {{ appearance.eyecolor }}</p>
+    <p>Couleur des cheveux : {{ appearance.haircolor }}</p>
+
+    <p><em>Statistiques :</em></p>
+    <ul>
+        <li>Intelligence : {{ powerstats.intelligence }} </li>
+        <li>Force : {{ powerstats.strength }} </li>
+        <li>Vitesse : {{ powerstats.speed }} </li>
+        <li>Résistance : {{ powerstats.durability }} </li>
+        <li>Pouvoir : {{ powerstats.power }} </li>
+        <li>Combat :{{ powerstats.combat }}  </li>
+    </ul>
+    <p><em>Biography :</em></p>
+    <ul>
+        <li>Nom : {{ biography.name }} </li>
+        <li>Nom entier : {{ biography.fullname }} </li>
+        <li>Lieu de naissance : {{ biography.placeofbirth }} </li>
+        <li>Alignement : {{ biography.alignment }} </li>
+    </ul>
+
+
+{% endblock %}

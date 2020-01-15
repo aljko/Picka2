@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Choisissez votre héro !</h2>
+
+<form method="post">
+        <div style="display:flex; flex-direction:row;">
+    {% for hero in heros %}
+        <div style="margin-bottom:50px;">
+        <img src="{{ hero.image.url }}" style="width:50px;"/>
+        <h2>{{ hero.name }}</h2>
+        <input type="radio" name="hero" id="hero_id_{{ hero.id }}" value="{{ hero.id }}">
+        </div>
+    {% endfor %}
+</div>
+        <input type="text" name="name" id="name">
+        <input type="submit">
+</form>
+
+{% endblock %}
